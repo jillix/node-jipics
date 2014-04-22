@@ -1,0 +1,29 @@
+{
+  "name": "node-jipics",
+  "version": "0.0.0",
+  "description": "Node.JS wrapper for jipics image hosting website.",
+  "main": "index.js",
+  "dependencies": {
+    "request": "~2.34.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jillix/node-jipics"
+  },
+  "keywords": [
+    "jipics",
+    "image",
+    "hosting",
+    "node"
+  ],
+  "author": "jillix <contact@jillix.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jillix/node-jipics/issues"
+  },
+  "homepage": "https://github.com/jillix/node-jipics"
+}
