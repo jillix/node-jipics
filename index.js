@@ -37,12 +37,21 @@ exports.upload = function (options, callback) {
         // handle error
         if (err) { return callback (err); }
 
-        // delete image
-        if (options.deleteAfterUpload) {
-            return fs.unlink(absoluteImagePath, callback);
+        // parse body
+        try {
+            res.body = JSON.parse(res.body);
+        } catch (e) {
+            return callback (res.body);
         }
 
-        callback (null, res);
+        // delete image
+        if (options.deleteAfterUpload) {
+            return fs.unlink(absoluteImagePath);
+        }
+
+        // callback
+        callback (null, res.body);
+
     // create the read stream from image file
     }).form().append("image", fs.createReadStream(options.path));
 };
