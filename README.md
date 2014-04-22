@@ -25,6 +25,9 @@ Uploads an image.
 
 ## Changelog
 
+### v0.1.2
+ - When `options.deleteAfterUpload` is true, no response was comming
+
 ### v0.1.1
  - Fixed a variable that was not defined
 
