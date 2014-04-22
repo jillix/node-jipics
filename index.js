@@ -46,7 +46,7 @@ exports.upload = function (options, callback) {
 
         // delete image
         if (options.deleteAfterUpload) {
-            return fs.unlink(absoluteImagePath);
+            return fs.unlink(options.path);
         }
 
         // callback
