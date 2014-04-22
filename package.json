@@ -8,7 +8,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "npm test"
+    "test": "node test/test.js"
   },
   "repository": {
     "type": "git",
@@ -25,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/jillix/node-jipics/issues"
   },
-  "homepage": "https://github.com/jillix/node-jipics"
+  "homepage": "https://github.com/jillix/node-jipics",
+  "directories": {
+    "test": "test"
+  }
 }
