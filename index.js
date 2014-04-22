@@ -44,5 +44,5 @@ exports.upload = function (options, callback) {
 
         callback (null, res);
     // create the read stream from image file
-    }).form().append("image", fs.createReadStream(absoluteImagePath));
+    }).form().append("image", fs.createReadStream(options.path));
 };
