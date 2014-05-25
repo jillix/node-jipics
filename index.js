@@ -1,19 +1,21 @@
-// dependencies
+// Dependencies
 var jipics  = "http://jipics.net/"
   , Request = require("request")
   , fs      = require("fs")
   ;
 
 /**
- *  Upload method
+ * upload
  *
- *  Arguments
- *    @options: a string representing the image path or an
- *    object contanining the following fields:
- *      - path: the path to the image
- *      - deleteAfterUpload: if true, the image will be deleted after a sucessful upload
- *
- * */
+ * @name upload
+ * @function
+ * @param {Object} options a string representing the image path or an
+ *  object contanining the following fields:
+ *   - path: the path to the image
+ *   - deleteAfterUpload: if true, the image will be deleted after a sucessful upload
+ * @param {Function} callback The callback function that will be called after upload is done.
+ * @return {Object} The post request that is made
+ */
 exports.upload = function (options, callback) {
 
     // get the image from the request
@@ -32,7 +34,7 @@ exports.upload = function (options, callback) {
     }
 
     // upload the image to jipics.net
-    Request.post(jipics, function (err, res) {
+    return Request.post(jipics, function (err, res) {
 
         // handle error
         if (err) { return callback (err); }
