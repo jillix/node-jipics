@@ -29,7 +29,7 @@ exports.upload = function (options, callback) {
     options = Object (options);
 
     // validate options
-    if (!options.path || !options.stream) {
+    if (!options.path && !options.stream) {
         return callback ("A path or a stream to the image must be provided.");
     }
 
