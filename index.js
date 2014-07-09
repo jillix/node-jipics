@@ -28,10 +28,12 @@ exports.upload = function (options, callback) {
     // force options to be an object
     options = Object (options);
 
-    // validate path
-    if (!options.path) {
-        return callback ("The path to the image must be provided.");
+    // validate options
+    if (!options.path || !options.stream) {
+        return callback ("A path or a stream to the image must be provided.");
     }
+
+    var stream = options.path ? fs.createReadStream(options.path) : options.stream;
 
     // upload the image to jipics.net
     return Request.post(jipics, function (err, res) {
@@ -47,7 +49,7 @@ exports.upload = function (options, callback) {
         }
 
         // delete image
-        if (options.deleteAfterUpload) {
+        if (options.deleteAfterUpload && options.path) {
             fs.unlink(options.path);
         }
 
@@ -55,5 +57,5 @@ exports.upload = function (options, callback) {
         callback (null, res.body);
 
     // create the read stream from image file
-    }).form().append("image", fs.createReadStream(options.path));
+    }).form().append("image", stream);
 };
