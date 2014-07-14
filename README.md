@@ -33,6 +33,10 @@ Uploads an image.
 
 ## Changelog
 
+### v0.2.0
+ - Supporting streams as input
+ - Updated comments
+
 ### v0.1.2
  - When `options.deleteAfterUpload` is true, no response was comming
 
