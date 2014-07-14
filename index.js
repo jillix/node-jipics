@@ -16,6 +16,7 @@ var Jipics = module.exports = {};
  * @param {Object} options a string representing the image path or an
  *  object contanining the following fields:
  *   - path: the path to the image
+ *   - stream: the read stream that can be from remote or from hard disk
  *   - deleteAfterUpload: if true, the image will be deleted after a sucessful upload
  * @param {Function} callback The callback function that will be called after upload is done.
  * @return {Object} The post request that is made
