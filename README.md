@@ -20,7 +20,6 @@ Jipics.upload({ stream: request.get("http://... myImage.png")}, function (err, b
 });
 ```
 
-
 ## Methods
 
 ### `upload (options, callback)`
