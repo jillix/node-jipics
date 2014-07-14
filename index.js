@@ -1,8 +1,12 @@
 // Dependencies
-var jipics  = "http://jipics.net/"
-  , Request = require("request")
-  , fs      = require("fs")
-  ;
+var Request = require("request");
+var Fs      = require("fs");
+
+// Jipics usr
+const JIPICS_URL  = "http://jipics.net/";
+
+// Constructor
+var Jipics = module.exports = {};
 
 /**
  * upload
@@ -16,29 +20,28 @@ var jipics  = "http://jipics.net/"
  * @param {Function} callback The callback function that will be called after upload is done.
  * @return {Object} The post request that is made
  */
-exports.upload = function (options, callback) {
+Jipics.upload = function (options, callback) {
 
-    // get the image from the request
+    // Get the image from the request
     if (typeof options === "string") {
         options = {
             path: options
         }
     }
 
-    // force options to be an object
+    // Force options to be an object
     options = Object(options);
 
-    // validate options
+    // Validate options
     if (!options.path && !options.stream) {
         return callback ("A path or a stream to the image must be provided.");
     }
 
+    // Create stream from hard disk or remote
     var stream = options.path ? fs.createReadStream(options.path) : options.stream;
 
-    // upload the image to jipics.net
-    return Request.post(jipics, function (err, res) {
-
-        // handle error
+    // Upload the image to jipics.net
+    return Request.post(JIPICS_URL, function (err, res) {
         if (err) { return callback(err); }
 
         // parse body
@@ -55,7 +58,5 @@ exports.upload = function (options, callback) {
 
         // callback
         callback (null, res.body);
-
-    // create the read stream from image file
     }).form().append("image", stream);
 };
