@@ -26,7 +26,7 @@ exports.upload = function (options, callback) {
     }
 
     // force options to be an object
-    options = Object (options);
+    options = Object(options);
 
     // validate options
     if (!options.path && !options.stream) {
@@ -39,13 +39,13 @@ exports.upload = function (options, callback) {
     return Request.post(jipics, function (err, res) {
 
         // handle error
-        if (err) { return callback (err); }
+        if (err) { return callback(err); }
 
         // parse body
         try {
             res.body = JSON.parse(res.body);
         } catch (e) {
-            return callback (res.body);
+            return callback(res.body);
         }
 
         // delete image
