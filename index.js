@@ -1,6 +1,6 @@
 // Dependencies
 var Request = require("request");
-var Fs      = require("fs");
+var Fs = require("fs");
 
 // Jipics usr
 const JIPICS_URL  = "http://jipics.net/";
@@ -39,7 +39,7 @@ Jipics.upload = function (options, callback) {
     }
 
     // Create stream from hard disk or remote
-    var stream = options.path ? fs.createReadStream(options.path) : options.stream;
+    var stream = options.path ? Fs.createReadStream(options.path) : options.stream;
 
     // Upload the image to jipics.net
     return Request.post(JIPICS_URL, function (err, res) {
@@ -54,7 +54,7 @@ Jipics.upload = function (options, callback) {
 
         // delete image
         if (options.deleteAfterUpload && options.path) {
-            fs.unlink(options.path);
+            Fs.unlink(options.path);
         }
 
         // callback
