@@ -1,10 +1,11 @@
 {
   "name": "jipics",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Node.JS wrapper for jipics image hosting website.",
   "main": "lib/index.js",
   "dependencies": {
-    "request": "^2.58.0"
+    "request": "^2.58.0",
+    "ul": "5.0.0"
   },
   "devDependencies": {},
   "scripts": {
