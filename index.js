@@ -1,8 +1,10 @@
 // Dependencies
-var Request = require("request");
-var Fs = require("fs");
+var Request = require("request")
+  , Fs = require("fs")
+  , Ul = require("ul")
+  ;
 
-// Jipics usr
+// Constants
 const JIPICS_URL  = "http://jipics.net/";
 
 // Constructor
@@ -10,16 +12,18 @@ var Jipics = module.exports = {};
 
 /**
  * upload
+ * Uploads an image to jipics.net.
  *
  * @name upload
  * @function
- * @param {Object} options a string representing the image path or an
- *  object contanining the following fields:
- *   - path: the path to the image
- *   - stream: the read stream that can be from remote or from hard disk
- *   - deleteAfterUpload: if true, the image will be deleted after a sucessful upload
- * @param {Function} callback The callback function that will be called after upload is done.
- * @return {Object} The post request that is made
+ * @param {Object} options A string representing the image path or an object:
+ *
+ *   - `path` (String): the path to the image.
+ *   - `stream` (Stream): a readable stream to get the image from (remote, hard-disk etc).
+ *   - `deleteAfterUpload` (Boolean): if `true`, the image will be deleted after a sucessful upload.
+ *
+ * @param {Function} callback The callback function.
+ * @return {Request} The request object.
  */
 Jipics.upload = function (options, callback) {
 
@@ -31,7 +35,10 @@ Jipics.upload = function (options, callback) {
     }
 
     // Force options to be an object
-    options = Object(options);
+    options = Ul.merge(options, {
+        stream: null
+      , deleteAfterUpload: false
+    });
 
     // Validate options
     if (!options.path && !options.stream) {
@@ -45,19 +52,18 @@ Jipics.upload = function (options, callback) {
     return Request.post(JIPICS_URL, function (err, res) {
         if (err) { return callback(err); }
 
-        // parse body
+        // Parse body
         try {
             res.body = JSON.parse(res.body);
         } catch (e) {
             return callback(res.body);
         }
 
-        // delete image
+        // Delete image
         if (options.deleteAfterUpload && options.path) {
             Fs.unlink(options.path);
         }
 
-        // callback
         callback (null, res.body);
     }).form().append("image", stream);
 };
