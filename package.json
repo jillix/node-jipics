@@ -1,6 +1,6 @@
 {
   "name": "jipics",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "Node.JS wrapper for jipics image hosting website.",
   "main": "lib/index.js",
   "dependencies": {
@@ -21,6 +21,9 @@
     "node"
   ],
   "author": "jillix <contact@jillix.com>",
+  "contributors": [
+    "Ionică Bizău <bizauionica@gmail.com> (http://ionicabizau.net)"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/jillix/node-jipics/issues"
